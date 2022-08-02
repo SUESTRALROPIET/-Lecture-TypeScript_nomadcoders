@@ -4,3 +4,5 @@
 > 수강기간: 2022.07.25 ~ 현재 (2주)
 
 1. [타입스크립트란?](./1st_note.md)
+2. [Call Signature, Overloading, Polymorphism](./2nd_note.md)
+3. [Class, Interface, Polymorphism](./3rd_note.md)
