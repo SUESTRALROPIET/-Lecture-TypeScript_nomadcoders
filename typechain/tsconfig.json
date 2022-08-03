@@ -1,0 +1,12 @@
+{
+  "include": ["src"],   // JS로 컴파일하고 싶은 모든 디렉토리
+  "compilerOptions": {
+    "outDir": "build",  // 자바스크립트 파일이 생성될 디렉토리 지정
+    "target": "ES6",    // 어떤 버전의 자바스크립트로 컴파일하고 싶은지 지정 
+    "lib": ["es6"],     // TS에게 사용할 API와 코드를 실행할 환경에 대해 설명해줌 => 관련 자동완성 가능(ex. DOM)
+    "strict": true,     // 보호강도 높임
+    // "allowJs": true,    // 자바스크립트 허용
+    "esModuleInterop": true,  // 모듈 불러오기
+    "module": "CommonJS",     // 
+  }
+}

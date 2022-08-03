@@ -155,6 +155,7 @@
 - 오브젝트 모양을 특정해주기 위한 역할만 함
 - 객체 지향 프로그래밍 개념을 활용해 디자인 됨
 - JS로 컴파일 되지 않고 사라짐 => 가벼움
+- [Differences Between Type Aliases and Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
 
 1. 오브젝트 모양 특정하기
     - 기존 오브젝트 & 인터페이스 => 두 코드 모두 동일
@@ -233,7 +234,7 @@
             }
 
             interface Human {
-                health, number
+                health: number
             }
 
             // extends => implements: 코드가 가벼워짐
@@ -253,3 +254,39 @@
             }
         ```
         > 내 생각: 기본 정보 + 알파일때 활용할 수 있지 않을까?
+
+## 3. Polymorphism
+- Generic을 활용하여 다른 모양의 코드를 가질 수 있게 함
+
+    ```js
+        interface Storage {     // TS에 이미 JS의 웹 storage API를 위한 인터페이스가 존재
+                                // 아래 코드를 작성하게 되면 TS가 Storage 인터페이스를 하나로 합쳐줌
+        }
+
+        // Generic 사용
+        interface SStorage<T> {
+            [key:string]: T
+        }
+        class LocalStorage<T> {     // Generic을 클래스로 보내고> 클래스는 인터페이스로 보내고 > 인터페이스는 사용
+            private storage: SStorage<T> = {}
+            set(key:string, value: T){
+                this.storage[key] = value;
+            }
+            remove(key:string){
+                delete this.storage[key]
+            }
+            get(key:string):T {
+                return this.storage[key]
+            }
+            clear() {
+                this.storage = {}
+            }
+        } 
+
+        const stringStorage = new LocalStorage<string>()
+        stringStorage.get("key")
+        stringStorage.set("hello", "how are u")
+
+        const booleanStorage = new LocalStorage<boolean>();
+        booleanStorage.get("key")
+    ```
